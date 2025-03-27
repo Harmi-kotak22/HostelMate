@@ -1,0 +1,80 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="{% url 'user_dashboard' %}">Home</a></li>
+            <li><a href="{% url 'feedback_selection' %}">Feedback</a></li>
+            <li><a href="{% url 'requestbox' %}">Requests</a></li>
+            <li><a href="{% url 'vacancy_list' %}">Vacancy</a></li>
+            <li><a href="{% url 'gatepass' %}">Gatepass</a></li>
+            <li class="logout-option"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="dashboard-header">
+            <div class="profile-container">
+                <a href="{% url 'user_profile' %}">
+                    <img src="{{ user.profile_picture.url|default:'/static/icons/profile_pic.jpeg' }}" 
+                         alt="Profile Picture" class="profile-pic">
+                </a>
+                <br>
+                <span class="username">{{ user.username }}</span>
+            </div>
+        </div>
+
+        <!-- Icons Section -->
+        <div class="icons-container">
+            <div class="icon-card">
+                <a href="{% url 'feedback_selection' %}">
+                    <img src="{% static 'icons/feedback.png' %}" alt="Feedback">
+                    <p>Feedback</p>
+                </a>
+            </div>
+            <div class="icon-card">
+                <a href="{% url 'requestbox' %}">
+                    <img src="{% static 'icons/request.png' %}" alt="Request">
+                    <p>Request</p>
+                </a>
+            </div>
+            <div class="icon-card">
+                <a href="{% url 'vacancy_list' %}">
+                    <img src="{% static 'icons/vacancy.png' %}" alt="Vacancy">
+                    <p>Vacancy</p>
+                </a>
+            </div>
+            <div class="icon-card">
+                <a href="{% url 'gatepass' %}">
+                    <img src="{% static 'icons/gatepass.png' %}" alt="Gatepass">
+                    <p>Gatepass</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .logout-option {
+        margin-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 10px;
+    }
+    
+    .logout-option a {
+        color: #ff4444 !important;
+        font-weight: bold;
+    }
+    
+    .logout-option a:hover {
+        color: #ff0000 !important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h3 class="text-center mb-4">Select Your Room</h3>
+
+<div class="container mt-4">
+
+    <!-- Select Your Room Section Moved to Top -->
+
+    <!-- Available Beds Section -->
+    {% if vacancies %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Room Number</th>
+                                <th>Bed Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vacancy in vacancies %}
+                                <tr>
+                                    <td>{{ vacancy.room_number }}</td>
+                                    <td>{{ vacancy.bed_number }}</td>
+                                    <td>
+                                        <form method="POST" action="{% url 'select_vacancy' %}" class="m-0">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="room_number" value="{{ vacancy.room_number }}">
+                                            <input type="hidden" name="bed_number" value="{{ vacancy.bed_number }}">
+                                            <button type="submit" class="btn btn-primary btn-sm">Select</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            <strong>No available rooms at the moment.</strong>
+        </div>
+    {% endif %}
+
+    <hr class="my-4">
+
+    <!-- Room Status Section -->
+    <div class="room-status mb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="status-section">
+                    <!-- Add room status details here if needed -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="status-section">
+                    <!-- Add room status details here if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="text-center mt-4">
+    <a href="{% url 'user_dashboard' %}" class="btn btn-dark dashboard-btn">Go to Dashboard</a>
+</div>
+<style>
+     .dashboard-btn {
+        background-color: #000;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+    .dashboard-btn:hover {
+        background-color: #343a40;
+    }
+    .room-status {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .status-section {
+        padding: 15px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .status-section h5 {
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    .room-numbers {
+        font-size: 1.1em;
+        color: #666;
+        margin-bottom: 0;
+    }
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .table {
+        margin-bottom: 0;
+    }
+    .btn-primary {
+        background-color: #000;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #333;
+    }
+    hr {
+        border-top: 2px solid #eee;
+    }
+</style>
+{% endblock %}

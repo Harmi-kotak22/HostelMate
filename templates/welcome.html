@@ -1,0 +1,59 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Welcome to HostelMate</h1>
+    <p>Your Ultimate Hostel Management System</p>
+    <a href="{% url 'login' %}" class="btn">Login</a>
+</div>
+
+<style>
+    /* Full-page background */
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #000 30%, #555 100%);
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Centered Welcome Box */
+    .welcome-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px 50px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        text-align: center;
+    }
+
+    .welcome-container h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .welcome-container p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    /* Login Button */
+    .btn {
+        background: white;
+        color: black;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #ddd;
+    }
+</style>
+{% endblock %}
